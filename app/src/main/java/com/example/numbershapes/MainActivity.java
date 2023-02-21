@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Number num;
     EditText mEditText;
     TextView mTextView;
     Button mbutton;
