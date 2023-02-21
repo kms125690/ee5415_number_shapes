@@ -2,6 +2,7 @@ package com.example.numbershapes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
     EditText mEditText;
     TextView mTextView;
     Button mbutton;
@@ -18,18 +18,20 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (mEditText.getText().toString() == "") {
+            if (mEditText.getText().toString().equals("")) {
                 mTextView.setText(R.string.no_input);
             } else {
                 int num = Integer.parseInt(String.valueOf(mEditText.getText().toString()));
                 Number val = new Number();
                 val.number = num;
                 if (val.isSquare() && val.isTriangular()) {
-                    mTextView.setText(R.string.is_square_triangular);
+                    mTextView.setText(num + getResources().getString(R.string.is_square_triangular));
                 } else if (val.isSquare() && !val.isTriangular()) {
-                    mTextView.setText(R.string.is_square);
+                    mTextView.setText(num + getResources().getString(R.string.is_square));
+                } else if (!val.isSquare() && val.isTriangular()) {
+                    mTextView.setText(num + getResources().getString(R.string.is_triangular));
                 } else if (!val.isSquare() && !val.isTriangular()) {
-                    mTextView.setText(R.string.is_triangular);
+                    mTextView.setText(num + getResources().getString(R.string.not_square_triangular));
                 }
             }
         }
